@@ -15,6 +15,11 @@ class Question(models.Model):
 
         return now - datetime.timedelta(days=1) <= self.publish_date <= now
 
+        was_publish_recently.admin_order_field = "publish_date"
+        was_published_recently.boolean = True
+        was_publish_recently.short_description = "Publish recently?"
+
+
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
